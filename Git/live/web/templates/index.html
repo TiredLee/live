@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h3 category="{{ category }}">直播列表</h3>
+    <hr>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active" category="douyu"><a href="/douyu/1/">斗鱼</a></li>
+        <li role="presentation" category="panda"><a href="/panda/1/">熊猫</a></li>
+        <li role="presentation" category="longzhu"><a href="/longzhu/1/">龙珠</a></li>
+        <li role="presentation" category="yy"><a href="/yy/1/">虎牙</a></li>
+        <li role="presentation" category="zhanqi"><a href="/zhanqi/1/">战旗</a></li>
+        <li role="presentation" category="all"><a href="/all/1/">全部直播</a></li>
+    </ul>
+    <br>
+
+    <div class="row">
+
+        <div class="col-lg-6">
+            <a href="/{{ category }}/lol/1/"><button type="button" class="btn btn-info">LOL</button></a>
+            <a href="/{{ category }}/dnf/1/"><button type="button" class="btn btn-info">DNF</button></a>
+            <a href="/{{ category }}/lscs/1/"><button type="button" class="btn btn-info">炉石传说</button></a>
+            <a href="/{{ category }}/jdqs/1/"><button type="button" class="btn btn-info">绝地求生</button></a>
+            <a href="/{{ category }}/zj/1/"><button type="button" class="btn btn-info">主机游戏</button></a>
+            <a href="/{{ category }}/hw/1/"><button type="button" class="btn btn-info">户外直播</button></a>
+            <a href="/{{ category }}/ms/1/"><button type="button" class="btn btn-info">美食</button></a>
+        </div>
+
+        <div class="col-lg-6">
+            <form action="/search/" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" disabled="disabled">Go!</button>
+                    </span>
+                </div><!-- /input-group -->
+            </form>
+        </div><!-- /.col-lg-6 -->
+
+    </div>
+    <br>
+
+    <div class="row">
+        {% for room in rooms %}
+            <a href="{{ room.url }}">
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                <img src="{{ room.preview }}" alt="..." style="width:280px; height:150px;">
+                    <div class="caption">
+                        <p class="txt c2">{{ room.rn }}</p>
+                        <p class="c1">
+                            <span>{{ room.nn }}</span>
+                            <br>
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span>{{ room.ol }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    {# 上一页 下一页#}
+    <div class="row">
+        {% if has_prev %}
+            <a href="/{{ category }}/{{ prev_num }}/"><u>上一页</u></a>
+        {% endif %}
+        {% if has_next %}
+            <a href="/{{ category }}/{{ next_num }}/"><u>下一页</u></a>
+        {% endif %}
+    </div>
+    <br>
+
+
+{% endblock %}
+
+{% block personResource %}
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}

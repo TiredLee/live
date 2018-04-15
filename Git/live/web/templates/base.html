@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="{{ url_for('static', filename='img/tissue-128.png') }}" type="image/x-icon">
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/swiper.jquery.min.js') }}"></script>
+
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/swiper.css') }}">
+
+    {# 挖坑 为页面配置自己资源 #}
+    {% block personResource %}
+
+    {% endblock %}
+
+    <title>
+        {{ title }}
+    </title>
+</head>
+<body>
+        {% block body %}
+
+        {% endblock %}
+</body>
+</html>
