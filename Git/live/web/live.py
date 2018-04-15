@@ -72,7 +72,7 @@ def category_page1(category, page):
         else:
             rooms = Room.query.order_by(Room.ol.desc()).paginate(page, per_page=40, error_out=True)
             pickle_rooms = rooms.items + [rooms.next_num, rooms.prev_num, rooms.has_next, rooms.has_prev]
-            r.setex(key, pickle.dumps(pickle_rooms), 75)
+            r.setex(key, pickle.dumps(pickle_rooms), 90)
 
             return render_template('index.html', category=category, rooms=rooms.items,
                                    next_num=rooms.next_num, prev_num=rooms.prev_num,
@@ -85,7 +85,7 @@ def category_page1(category, page):
                                                                                                    error_out=True)
 
             pickle_room = rooms.items + [rooms.next_num, rooms.prev_num, rooms.has_next, rooms.has_prev]
-            r.setex(key, pickle.dumps(pickle_room), 75)
+            r.setex(key, pickle.dumps(pickle_room), 90)
 
             return render_template('index.html', category=category, rooms=rooms.items,
                                    next_num=rooms.next_num, prev_num=rooms.prev_num,
@@ -110,7 +110,7 @@ def category_page2(category1, category2, page):
                 paginate(page, per_page=40, error_out=True)
 
             pickle_rooms = rooms.items + [rooms.next_num, rooms.prev_num, rooms.has_next, rooms.has_prev]
-            r.setex(key, pickle.dumps(pickle_rooms), 75)
+            r.setex(key, pickle.dumps(pickle_rooms), 90)
 
             return render_template('index.html', category=category1, rooms=rooms.items,
                                    next_num=rooms.next_num, prev_num=rooms.prev_num,
@@ -124,7 +124,7 @@ def category_page2(category1, category2, page):
                 order_by(Room.ol.desc()).paginate(page, per_page=40, error_out=True)
 
             pickle_room = rooms.items + [rooms.next_num, rooms.prev_num, rooms.has_next, rooms.has_prev]
-            r.setex(key, pickle.dumps(pickle_room), 75)
+            r.setex(key, pickle.dumps(pickle_room), 90)
 
             return render_template('index.html', category=category1, rooms=rooms.items,
                                    next_num=rooms.next_num, prev_num=rooms.prev_num,
