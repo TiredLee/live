@@ -1,0 +1,7 @@
+scrapy
+pymysql
+flask
+flask-script
+flask-sqlalchemy
+gunicorn
+
